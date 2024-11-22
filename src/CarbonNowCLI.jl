@@ -56,10 +56,17 @@ function generate_carbon_url(;
 end
 
 Base.@ccallable function main()::Cint
-    println(stdout, ARGS)
-    length(ARGS) == 1 || (println("Usage: julia main.jl <path/to/file.jl>"); exit())
+    println(Core.stdout, ARGS)
+    if length(ARGS) == 0
+        # For juliac case
+        filename = "main.jl"
+    elseif length(ARGS) != 1
+        println("Usage: julia main.jl <path/to/file.jl>")
+        exit()
+    else
+        filename = ARGS[1]
+    end
 
-    filename = ARGS[1]
     code_snippet = join(readlines(filename), '\n')
     language = last(splitext(filename)) == ".jl" ? "julia" : 
                last(splitext(filename)) == ".toml" ? "toml" :
