@@ -1,6 +1,6 @@
 module CarbonNowCLI
 
-using HTTP: escapeuri
+using URIs: escapeuri
 
 """
 	open_in_default_browser(url::AbstractString)::Bool
@@ -53,6 +53,25 @@ function generate_carbon_url(;
     url = base_url * "?" * query_string
 
     return url
+end
+
+Base.@ccallable function main()::Cint
+    println(stdout, ARGS)
+    length(ARGS) == 1 || (println("Usage: julia main.jl <path/to/file.jl>"); exit())
+
+    filename = ARGS[1]
+    code_snippet = join(readlines(filename), '\n')
+    language = last(splitext(filename)) == ".jl" ? "julia" : 
+               last(splitext(filename)) == ".toml" ? "toml" :
+               last(splitext(filename)) == ".md" ? "markdown" : "auto"
+
+    url = generate_carbon_url(
+        theme = "monokai",
+        language = language,
+        line_numbers = true,
+        code = code_snippet,
+    )
+    open_in_default_browser(url)
 end
 
 end # module CarbonNowCLI
