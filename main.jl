@@ -1,6 +1,6 @@
 using CarbonNowCLI: generate_carbon_url, open_in_default_browser
 
-length(ARGS) == 1 || println("Usage: julia main.jl <path/to/file.jl>")
+length(ARGS) == 1 || (println("Usage: julia main.jl <path/to/file.jl>"); exit())
 
 filename = ARGS[1]
 code_snippet = join(readlines(filename), '\n')
