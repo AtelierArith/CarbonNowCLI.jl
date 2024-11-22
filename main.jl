@@ -5,7 +5,8 @@ length(ARGS) == 1 || println("Usage: julia main.jl <path/to/file.jl>")
 filename = ARGS[1]
 code_snippet = join(readlines(filename), '\n')
 language = last(splitext(filename)) == ".jl" ? "julia" : 
-           last(splitext(filename)) == ".toml" ? "toml" : "auto"
+           last(splitext(filename)) == ".toml" ? "toml" :
+           last(splitext(filename)) == ".md" ? "markdown" : "auto"
 
 url = generate_carbon_url(
     theme = "monokai",
