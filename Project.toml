@@ -1,0 +1,10 @@
+name = "CarbonNowCLI"
+uuid = "08bdf12a-7000-47b7-853d-1c82b5f9c15e"
+authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
+version = "0.0.1"
+
+[deps]
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+
+[compat]
+HTTP = "1.10.10"
