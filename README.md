@@ -13,11 +13,11 @@ $ julia --project -e 'using Pkg; Pkg.instantiate()'
 ## Usage
 
 ```sh
-julia --project main.jl path/to/file
+$ julia --project main.jl path/to/file
 ```
 
 ### Examples
 
 ```sh
-julia --project main.jl Project.toml
+$ julia --project main.jl Project.toml
 ```
